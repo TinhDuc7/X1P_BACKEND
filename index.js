@@ -14,12 +14,13 @@ mongoose.connect(process.env.MONGO_URL).then(()=> console.log('db connected')).c
 // app.use(express.json({ limit: '10mb' }));
 // app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
-// app.use(bodyParser.urlencoded({limit: '10mb', extended: false }));
-// app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({limit: '10mb', extended: true }));
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
 
+app.use(cors());
 
 
 
