@@ -11,11 +11,11 @@ const createUser = async (req, res) => {
     });
     try {
         await newUser.save();
+
         res.status(201).json({message:'User successfully created'})
     } catch (error) {
         res.status(500).json({message: error})
     }
-
 };
 
 const loginUser = async (req, res) => {
@@ -26,17 +26,17 @@ const loginUser = async (req, res) => {
         const decryptedPassword = CryptoJS.AES.decrypt(user.password, process.env.SECRET);
         const decryptedpass = decryptedPassword.toString(CryptoJS.enc.Utf8);
 
-        decryptedpass !== req.body.passwrod && res.status(401).json('Wrong password');
+        decryptedpass !== req.body.password && res.status(401).json('Wrong password');
 
         const userToken = jwt.sign(
             {
                 id: user.id
-            }, process.env.JWT_SEC, { expiresIn: '2h' }
+            }, process.env.JWT_SEC, { expiresIn: '7d' }
         );
 
-        const { password, __v, createdAt, updateAt, ...userData } = user._doc;
+        const { password, __v, createdAt, updatedAt, ...userData } = user._doc;
         res.status(200).json({ ...userData, token: userToken })
-
+ 
     } catch (error) {
         res.status(500).json({message: error})
     }

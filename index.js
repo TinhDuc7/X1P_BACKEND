@@ -4,7 +4,9 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const app = express();
-const productRouter = require('./routes/products')
+const productRouter = require('./routes/products'); 
+const authRouter = require('./routes/auth');
+const userRouter = require('./routes/user')
 
 
 
@@ -25,7 +27,10 @@ app.use(cors());
 
 
 
-app.use('/api/products', productRouter)
+app.use('/api/products', productRouter);
+app.use('/api', authRouter);
+app.use('/api/users', userRouter);
+
 
 
 app.listen(process.env.PORT, () => console.log(`Example app listening on port ${process.env.PORT}!`))
