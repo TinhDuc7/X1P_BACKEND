@@ -6,7 +6,9 @@ const mongoose = require('mongoose');
 const app = express();
 const productRouter = require('./routes/products'); 
 const authRouter = require('./routes/auth');
-const userRouter = require('./routes/user')
+const userRouter = require('./routes/user');
+const cartRouter = require('./routes/cart');
+
 
 
 
@@ -30,6 +32,7 @@ app.use(cors());
 app.use('/api/products', productRouter);
 app.use('/api', authRouter);
 app.use('/api/users', userRouter);
+app.use('/api/cart', cartRouter);
 
 
 
