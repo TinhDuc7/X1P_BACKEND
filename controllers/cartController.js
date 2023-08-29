@@ -70,8 +70,8 @@ const decrementCartItem = async (req, res) => {
         if (!cart) {
             return res.status (404).json('Cart not found')
         };
-        console.log(cart)
-        console.log(cart.products)
+        // console.log(cart)
+        // console.log(cart.products)
         const existingProduct = cart.products.find(
             (product) => product.cartItem.toString() === cartItem
         );
@@ -95,9 +95,9 @@ const decrementCartItem = async (req, res) => {
         }
         res.status(200).json('Product updated')
     } catch (error) {
-        // res.status(500).json(error)
-        console.log(error)
-        res.status(500).json({ message: error })
+        res.status(500).json(error)
+        // console.log(error)
+        // res.status(500).json({ message: error })
     }
 }
 
